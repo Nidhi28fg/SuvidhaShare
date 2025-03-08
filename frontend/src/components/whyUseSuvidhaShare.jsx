@@ -6,7 +6,7 @@ import { IoEarthSharp } from "react-icons/io5";
 import { GiShop } from "react-icons/gi";
 
 
-const SuvidhaShare = () => {
+const WhyUseSuvidhaShare = () => {
   return (
     <div className="flex flex-col items-left justify-center min-h-screen bg-cover bg-center"
       style={{
@@ -60,4 +60,4 @@ const SuvidhaShare = () => {
   );
 };
 
-export default SuvidhaShare;
+export default WhyUseSuvidhaShare;
