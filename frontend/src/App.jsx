@@ -51,11 +51,6 @@ const App = () => {
         path="/signin"
         element={<SignIn />}
       />
-      
-<Route
-        path="/signup"
-        element={<SignIn />}
-      />
 
       </Routes>
       

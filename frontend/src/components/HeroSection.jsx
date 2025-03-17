@@ -5,7 +5,7 @@ const HeroSection = () => {
     <header className="relative bg-green-900 text-white text-center py-24 px-4">
       <div
         className="absolute inset-0 bg-cover bg-center opacity-30"
-        style={{ backgroundImage: "url('/back.png')" }}
+        style={{ backgroundImage: "url('src/assets/back.png')" }}
       ></div>
       <div className="relative z-10">
         <h2 className="text-xl font-bold">Reduce Food Waste with Suvidha Share</h2>
