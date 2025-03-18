@@ -14,6 +14,7 @@ import ClientTestimonials from "./components/clientTestmonials";
 import ContactUs from "./components/contactUs";
 import AboutUs from "./pages/AboutUs";
 import SignIn from "./components/signin";
+import Signup from "./components/SignUp";
 
 const App = () => {
   return (
@@ -50,6 +51,11 @@ const App = () => {
 <Route
         path="/signin"
         element={<SignIn />}
+      />
+
+<Route
+        path="/signup"
+        element={<Signup />}
       />
 
       </Routes>
