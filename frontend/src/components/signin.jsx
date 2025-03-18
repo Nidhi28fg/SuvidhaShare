@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import Signlogo from "../assets/suvidhasharelogo.png";
 import Food from "../assets/food.png";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-
+  const navigate = useNavigate();
 
 
 
@@ -14,9 +16,33 @@ const SignIn = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('https//localhost:500/signin', {
+        email: email,
+        password: password
+      });
 
+      if (response.status === 200) {
+        console.log("Login successful:", response.data);
+        localStorage.setItem('token', response.data.token);
+        navigate('/dashboard');
+      } else {
+        console.error("Login failed:", response.data.message);
+        alert(response.data.message);
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      if (error.response && error.response.data && error.response.data.message) {
+        alert(error.response.data.message);
+      } else {
+        alert("An error occurred during login.");
+      }
+    }
   };
+
+  
 
 
 
@@ -40,14 +66,14 @@ const SignIn = () => {
           <h2 className="text-5xl font-bold mb-6">Sign In</h2>
           <form onSubmit={handleSubmit} className="space-y-8">
             <div>
-              <label className="block text-2xl font-medium text-gray-700 mb-4">User Name</label>
+              <label className="block text-2xl font-medium text-gray-700 mb-4">Email</label>
               <input
                 className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="username"
+                id="email"
                 type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                placeholder="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div>
