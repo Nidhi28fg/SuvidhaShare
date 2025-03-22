@@ -9,14 +9,20 @@ const Navbar = () => {
         <span className="text-gray-700 font-semibold text-lg"></span>
       </div>
       <div className="flex gap-4">
-        <button className="bg-green-900 text-white px-6 py-2 rounded-full font-bold flex items-center gap-1">
+      <button className="bg-green-900 text-white px-8 py-2 rounded-full font-bold flex items-center gap-1">
+          HOME
+        </button>
+        <button className="bg-green-900 text-white px-8 py-2 rounded-full font-bold flex items-center gap-1">
+          ABOUT US
+        </button>
+        <button className="bg-green-900 text-white px-8 py-2 rounded-full font-bold flex items-center gap-1">
+          PROGRAMS
+        </button> 
+        <button className="bg-green-900 text-white px-8 py-2 rounded-full font-bold flex items-center gap-1">
           CONTACT US
         </button>
-        <button className="bg-green-900 text-white px-6 py-2 rounded-full font-bold flex items-center gap-1">
+        <button className="bg-green-900 text-white px-8 py-2 rounded-full font-bold flex items-center gap-1">
           SIGNUP
-        </button>
-        <button className="bg-green-900 text-white px-6 py-2 rounded-full font-bold flex items-center gap-1">
-          ABOUT US
         </button>
       </div>
     </nav>
