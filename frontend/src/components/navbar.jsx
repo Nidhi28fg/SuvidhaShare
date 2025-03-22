@@ -1,10 +1,11 @@
 import React from "react";
+import Logo from "../assets/suvidhasharelogo.png";
 
 const Navbar = () => {
   return (
     <nav className="flex justify-between items-center p-2 bg-white shadow-md">
       <div className="flex items-center gap-2">
-        <img src="src/assets/logo.png" alt="Suvidha Share" className="w-40 max-h-12 object-contain" />
+        <img src={Logo} alt="User Profile" className=" w-48 h-25 bg-white" />
         <span className="text-gray-700 font-semibold text-lg"></span>
       </div>
       <div className="flex gap-4">
