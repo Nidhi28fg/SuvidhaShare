@@ -14,7 +14,7 @@ import ClientTestimonials from "./components/clientTestmonials";
 import ContactUs from "./components/contactUs";
 import AboutUs from "./pages/AboutUs";
 import SignIn from "./components/signin";
-import SignUp from "./components/SignUp";
+import AllFoodLists from "./pages/AllFoodLists";
 
 const App = () => {
   return (
@@ -27,6 +27,8 @@ const App = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<SignIn />} />
         <Route path="/aboutus" element={<AboutUs />}/>
+        <Route path="/allfoodlists" element={<AllFoodLists />}/>
+
         {/* Default Route (Home page) */}
         <Route
           path="/"
