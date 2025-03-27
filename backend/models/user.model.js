@@ -6,7 +6,7 @@ const userSchema = new Schema(
     {
         username: {
             type: String,
-            required: true,
+            required: [true, "Username is required"],
             unique: true,
             maxlength: 50,
             lowercase: true,
@@ -15,7 +15,7 @@ const userSchema = new Schema(
         },
         email: {
             type: String,
-            required: true,
+            required: [true, "Email is required"],
             unique: true,
             maxlength: 50,
             lowercase: true,
@@ -23,7 +23,7 @@ const userSchema = new Schema(
         },
         fullname: {
             type: String,
-            required: true,
+            required: [true, "Name is required"],
             maxlength: 50,
             trim: true,
             index: true,
@@ -38,12 +38,12 @@ const userSchema = new Schema(
         },
         role: {
             type: String,
-            enum: ["volunteer", "individual", "restaurant", "admin"],
+            enum: ["volunteer", "individual", "organisation", "admin"],
             default: "individual"
         },
-        profileImage: {
-            type: Image,
-            default: null,
+        avatar: {
+            data: Buffer,
+            contentType: String
         }
     },
     { timestamps: true }
@@ -61,8 +61,8 @@ userSchema.methods.isPasswordCorrect = async function(password) {
     return await bcrypt.compare(password, this.password);
 }
 
-userSchema.methods.generateAccessToken = async function() {
-    return await jwt.sign(
+userSchema.methods.generateAccessToken = function() {   // async await not needed because jwt.sign is fast enough and it returns an object instead of string if used asyncronously
+    return jwt.sign(
         {
             _id: this._id,
             email: this.email,
@@ -76,8 +76,8 @@ userSchema.methods.generateAccessToken = async function() {
     )
 }
 
-userSchema.methods.generateRefreshToken = async function() {
-    return await jwt.sign(
+userSchema.methods.generateRefreshToken = function() {
+    return jwt.sign(
         {
             _id: this._id
         },

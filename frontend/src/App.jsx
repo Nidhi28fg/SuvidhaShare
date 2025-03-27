@@ -1,12 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Importing necessary components from react-router-dom
 
+// axios configuration
+import "./axiosConfig.js";
+
 // Import your components
 import Dashboard from "./components/Dashboard";
 import Navbar from "./components/navbar";
 import HeroSection from "./components/HeroSection";
 import Solutions from "./components/Solutions";
-import SignUp from "./components/SignUp";
 import Nutrition from "./components/nutrition";
 import WhyUseSuvidhaShare from "./components/whyUseSuvidhaShare";
 import Gallery from "./components/gallery";
@@ -25,7 +27,7 @@ const App = () => {
       <Routes> {/* Only one Route will be rendered at a time */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<SignIn />} />
+        <Route path="/signin" element={<SignIn />} />
         <Route path="/aboutus" element={<AboutUs />}/>
         <Route path="/allfoodlists" element={<AllFoodLists />}/>
 

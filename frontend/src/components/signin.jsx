@@ -11,7 +11,6 @@ const SignIn = () => {
   const navigate = useNavigate();
 
 
-
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -19,14 +18,15 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/login', {
+      const response = await axios.post('/user/login', {
         email: email,
         password: password
       });
 
       if (response.status === 200) {
-        console.log("Login successful:", response.data);
-        localStorage.setItem('token', response.data.token);
+
+        localStorage.setItem('user', response.data.user);
+
         navigate('/dashboard');
       } else {
         console.error("Login failed:", response.data.message);
@@ -41,9 +41,6 @@ const SignIn = () => {
       }
     }
   };
-
-  
-
 
 
   return (

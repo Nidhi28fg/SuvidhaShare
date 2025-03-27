@@ -5,10 +5,11 @@ const SignUp = () => {
  
   const [formData, setFormData] = useState({
     fullName: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
-    role: "volunteer",
+    role: "individual",
   });
 
   const [error, setError] = useState("");
@@ -23,7 +24,6 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-   
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match!");
       return;
@@ -32,9 +32,10 @@ const SignUp = () => {
 
     try {
       
-      const response = await axios.post("http://localhost:5000/api/signup", formData);
+      const response = await axios.post("/user/signup", formData);
+      
       setSuccess(response.data.message);
-      setFormData({ fullName: "", email: "", password: "", confirmPassword: "", role: "volunteer" });
+      setFormData({ fullName: "", username: "", email: "", password: "", confirmPassword: "", role: "individual" });
     } catch (err) {
       setError(err.response?.data?.error || "Something went wrong!");
     }
@@ -52,11 +53,11 @@ const SignUp = () => {
         </div>
         <nav>
           <ul className="flex space-x-4">
-            <li><a href="#" className="text-green-700 font-semibold">Home</a></li>
-            <li><a href="#" className="text-green-700 font-semibold">About Us</a></li>
+            <li><a href="/" className="text-green-700 font-semibold">Home</a></li>
+            <li><a href="/aboutus" className="text-green-700 font-semibold">About Us</a></li>
             <li><a href="#" className="text-green-700 font-semibold">Programs</a></li>
             <li><a href="#" className="text-green-700 font-semibold">Contact Us</a></li>
-            <li><a href="#" className="bg-green-600 text-white px-4 py-2 rounded">Login</a></li>
+            <li><a href="/signin" className="bg-green-600 text-white px-4 py-2 rounded">SignIn</a></li>
           </ul>
         </nav>
       </header>
@@ -76,6 +77,9 @@ const SignUp = () => {
           <input type="text" name="fullName" placeholder="Full Name" className="w-full px-4 py-2 border rounded"
                  value={formData.fullName} onChange={handleChange} required />
 
+          <input type="text" name="username" placeholder="Username" className="w-full px-4 py-2 border rounded"
+                 value={formData.username} onChange={handleChange} required />
+
           <input type="email" name="email" placeholder="Email Address" className="w-full px-4 py-2 border rounded"
                  value={formData.email} onChange={handleChange} required />
 
@@ -87,15 +91,15 @@ const SignUp = () => {
 
           <label className="block">Select Role:</label>
           <select name="role" className="w-full px-4 py-2 border rounded" value={formData.role} onChange={handleChange} required>
+            <option value="individual">Individual</option>
             <option value="volunteer">Volunteer</option>
-            <option value="donor">Donor</option>
-            <option value="general">General User</option>
+            <option value="organisation">Organisation</option>
           </select>
 
           <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Sign Up</button>
         </form>
 
-        <p className="text-center mt-4">Already have an account? <a href="#" className="text-blue-600">Login Here</a></p>
+        <p className="text-center mt-4">Already have an account? <a href="/signin" className="text-blue-600">Login Here</a></p>
       </div>
     </div>
   );
